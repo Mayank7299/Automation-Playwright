@@ -7,16 +7,10 @@ pipeline {
   }
 
   tools {
-    nodejs 'NodeJS 16' // Ensure NodeJS is set up in Jenkins
+    nodejs 'NodeJS 16'
   }
 
   stages {
-    stage('Checkout') {
-      steps {
-        git 'https://your.git.repo/your-playwright-project.git'
-      }
-    }
-
     stage('Install Dependencies') {
       steps {
         sh 'npm ci'

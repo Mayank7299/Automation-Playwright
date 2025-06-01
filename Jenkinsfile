@@ -26,7 +26,6 @@ pipeline {
 
     stage('Run floweraura.spec.ts on mobile-chrome') {
       steps {
-        // Run tests in headed mode with Xvfb (to support video recording & screenshots)
         sh 'xvfb-run -a npx playwright test --project=mobile-chrome --reporter=html,junit'
       }
     }
@@ -40,12 +39,6 @@ pipeline {
           keepAll: true,
           alwaysLinkToLastBuild: true
         ])
-      }
-    }
-
-    stage('Publish JUnit Test Results') {
-      steps {
-        junit 'playwright-report/junit.xml'
       }
     }
   }

@@ -9,7 +9,7 @@ export default defineConfig({
     baseURL: 'https://www.floweraura.com/',
     headless: false,
     screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
+    video: 'on',
     trace: 'on-first-retry',
   },
   projects: [
@@ -21,11 +21,14 @@ export default defineConfig({
     //     headless: false,    // Optional: run in headed mode so you see browser window
     //   },
     // },
-      {
+        {
       name: 'mobile-chrome',
       use: {
-        ...devices['Pixel 5'],   // Mobile device emulation (screen size, user agent, etc.)
-        headless: false,         // Optional, show browser window
+        ...devices['Pixel 5'],
+        headless: false,
+        screenshot: 'only-on-failure',
+        video: 'on', //  video for all tests
+        trace: 'on-first-retry',
       },
     },
 

@@ -19,16 +19,16 @@ pipeline {
 
     stage('Install Dependencies') {
       steps {
-        sh 'npm ci || npm install' 
+        sh 'npm ci || npm install'
         sh 'npx playwright install'
       }
     }
 
     stage('Run Playwright Tests (headed with Xvfb)') {
-  steps {
-    sh 'xvfb-run -a npm run test -- --headed'
-  }
-}
+      steps {
+        sh 'xvfb-run -a npm run test -- --headed'
+      }
+    }
 
     stage('Publish HTML Report') {
       steps {
@@ -43,9 +43,10 @@ pipeline {
     }
   }
 
-  post {
-    always {
-      archiveArtifacts artifacts: '**/test-results/**', allowEmptyArchive: true
-    }
+ post {
+  always {
+    archiveArtifacts artifacts: '**/test-results/**', allowEmptyArchive: true
   }
 }
+
+  }

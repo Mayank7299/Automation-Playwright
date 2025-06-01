@@ -26,8 +26,8 @@ pipeline {
 
     stage('Run floweraura.spec.ts on mobile-chrome') {
       steps {
-        // Use xvfb-run for headed mode on Linux CI
-        sh 'xvfb-run -a npx playwright test --project=mobile-chrome'
+        // Run tests in headed mode with Xvfb (to support video recording & screenshots)
+        sh 'xvfb-run -a npx playwright test --project=mobile-chrome --reporter=html,junit'
       }
     }
 
@@ -42,12 +42,18 @@ pipeline {
         ])
       }
     }
+
+    stage('Publish JUnit Test Results') {
+      steps {
+        junit 'playwright-report/junit.xml'
+      }
+    }
   }
 
   post {
     always {
-      archiveArtifacts artifacts: '**/test-results/**/*.webm', allowEmptyArchive: true
-      archiveArtifacts artifacts: 'playwright-report/**', allowEmptyArchive: true
+      // Archive video and test results artifacts for download
+      archiveArtifacts artifacts: '**/test-results/**/*.webm, playwright-report/**', allowEmptyArchive: true
     }
   }
 }

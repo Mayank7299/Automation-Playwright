@@ -23,7 +23,7 @@ export default defineConfig({
     // },
     {
       name: 'mobile-chrome',
-      testMatch: /.*floweraura\.spec\.ts/,  
+      testMatch: /.floweraura\.spec\.ts/,  
       use: {
         ...devices['Pixel 5'],
         headless: false,

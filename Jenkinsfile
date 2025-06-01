@@ -25,10 +25,11 @@ pipeline {
     }
 
     stage('Run floweraura.spec.ts on mobile-chrome') {
-      steps {
-        sh 'xvfb-run -a npx playwright test --project=mobile-chrome --reporter=html,junit'
-      }
-    }
+  steps {
+    sh 'xvfb-run -a npx playwright test tests/floweraura.spec.ts --project=mobile-chrome --reporter=html,junit'
+  }
+}
+
 
     stage('Publish HTML Report') {
       steps {

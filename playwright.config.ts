@@ -6,8 +6,8 @@ export default defineConfig({
   retries: 1,
   reporter: [['html'], ['list']],
   use: {
-    baseURL: 'https://yourapp.com',
-    headless: false,
+    baseURL: 'https://www.floweraura.com/',
+    headless: true,
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
     trace: 'on-first-retry',
@@ -18,15 +18,14 @@ export default defineConfig({
     //   use: {
     //     ...devices['Desktop Chrome'],
     //     channel: 'chrome',  // This tells Playwright to use Google Chrome instead of Chromium
-    //     headless: false,    // Optional: run in headed mode so you see browser window
+    //     headless: true,    // Optional: run in headed mode so you see browser window
     //   },
     // },
       {
       name: 'mobile-chrome',
       use: {
         ...devices['Pixel 5'],   // Mobile device emulation (screen size, user agent, etc.)
-        channel: 'chrome',       // Use Google Chrome browser
-        headless: false,         // Optional, show browser window
+        headless: true,         // Optional, show browser window
       },
     },
 
@@ -35,10 +34,10 @@ export default defineConfig({
     //   use: { ...devices['Desktop Firefox'] },
     // },
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
+    // {
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'] },
+    // },
   ],
 });
 

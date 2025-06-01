@@ -11,10 +11,16 @@ pipeline {
   }
 
   stages {
+    stage('Checkout') {
+      steps {
+        git url: 'https://github.com/Mayank7299/Automation-Playwright.git'
+      }
+    }
+
     stage('Install Dependencies') {
       steps {
-        sh 'npm install'
-        sh 'npx playwright install --with-deps'
+        sh 'npm ci || npm install' 
+        sh 'npx playwright install'
       }
     }
 

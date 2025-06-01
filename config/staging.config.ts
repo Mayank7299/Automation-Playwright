@@ -1,3 +1,3 @@
 export const config = {
-  baseURL: 'https://www.floweraura.com/'  //Production Url
+  baseURL: 'https://www.floweraura.com/'
 };

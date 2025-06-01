@@ -24,11 +24,11 @@ pipeline {
       }
     }
 
-    stage('Run Playwright Tests') {
-      steps {
-        sh 'npm run test'
-      }
-    }
+    stage('Run Playwright Tests (headed with Xvfb)') {
+  steps {
+    sh 'xvfb-run -a npm run test -- --headed'
+  }
+}
 
     stage('Publish HTML Report') {
       steps {

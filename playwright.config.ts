@@ -14,33 +14,31 @@ export default defineConfig({
   },
   projects: [
     // {
-    //   name: 'chrome', // you can name it chrome or google-chrome for clarity
+    //   name: 'chrome',
     //   use: {
     //     ...devices['Desktop Chrome'],
-    //     channel: 'chrome',  // This tells Playwright to use Google Chrome instead of Chromium
-    //     headless: false,    // Optional: run in headed mode so you see browser window
+    //     channel: 'chrome',
+    //     headless: false,
     //   },
     // },
-        {
+    {
       name: 'mobile-chrome',
+      testMatch: /.*floweraura\.spec\.ts/,  
       use: {
         ...devices['Pixel 5'],
         headless: false,
         screenshot: 'only-on-failure',
-        video: 'on', //  video for all tests
+        video: 'on',
         trace: 'on-first-retry',
       },
     },
-
     // {
     //   name: 'firefox',
     //   use: { ...devices['Desktop Firefox'] },
     // },
-
     // {
     //   name: 'webkit',
     //   use: { ...devices['Desktop Safari'] },
     // },
   ],
 });
-

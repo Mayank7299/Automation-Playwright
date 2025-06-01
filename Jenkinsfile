@@ -24,9 +24,10 @@ pipeline {
       }
     }
 
-    stage('Run Playwright Tests (headed with Xvfb)') {
+    stage('Run floweraura.spec.ts on mobile-chrome') {
       steps {
-        sh 'xvfb-run -a npm run test -- --headed'
+        // Use xvfb-run for headed mode on Linux CI
+        sh 'xvfb-run -a npx playwright test --project=mobile-chrome'
       }
     }
 
@@ -43,10 +44,10 @@ pipeline {
     }
   }
 
- post {
-  always {
-    archiveArtifacts artifacts: '**/test-results/**', allowEmptyArchive: true
+  post {
+    always {
+      archiveArtifacts artifacts: '**/test-results/**/*.webm', allowEmptyArchive: true
+      archiveArtifacts artifacts: 'playwright-report/**', allowEmptyArchive: true
+    }
   }
 }
-
-  }
